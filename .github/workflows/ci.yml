@@ -1,0 +1,11 @@
+name: Generate Images
+on: [push]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup
+        run: |
+          apt update
+          apt install -y graphviz
