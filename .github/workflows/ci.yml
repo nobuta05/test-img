@@ -5,7 +5,23 @@ jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: OS Setup
         run: |
-          apt update
-          apt install -y graphviz
+          sudo apt update
+          sudo apt install -y graphviz python3-venv
+      - name: Python Setup
+        run: |
+          python -m venv ./env
+          source ./env/bin/activate
+          pip install -r requirements.txt
+      - name: Generate Images
+        run: |
+          source ./env/bin/activate
+          python img.py
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: servers_@_lab
+          path: ./servers_@_lab.png
