@@ -2,7 +2,7 @@ name: Generate Images
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*"
   pull_request:
 
 jobs:
@@ -27,6 +27,7 @@ jobs:
           source ./env/bin/activate
           python img.py
       - name: Upload to Artifacts if Pull Request
+        if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v3
         with:
           name: generated
