@@ -15,7 +15,7 @@ jobs:
       - name: OS Setup
         run: |
           sudo apt update
-          sudo apt install -y graphviz python3-venv
+          sudo apt install -y graphviz python3-venv fonts-noto-cjk
       - name: Python Setup
         run: |
           python -m venv ./env
