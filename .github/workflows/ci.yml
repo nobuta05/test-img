@@ -20,8 +20,8 @@ jobs:
         run: |
           source ./env/bin/activate
           python img.py
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+      - name: Release with assets
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: servers_@_lab
           path: ./servers_@_lab.png
