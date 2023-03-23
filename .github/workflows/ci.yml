@@ -16,7 +16,7 @@ jobs:
       - name: OS Setup
         run: |
           sudo apt update
-          sudo apt install -y graphviz python3-venv fonts-noto-cjk
+          sudo apt install -y graphviz python3-venv fonts-noto-cjk imagemagick
       - name: Python Setup
         run: |
           python -m venv ./env
@@ -26,6 +26,9 @@ jobs:
         run: |
           source ./env/bin/activate
           python img.py
+          for file in `ls output/*`; do
+            mogrify -trim $file
+          done
       - name: Upload to Artifacts if Pull Request
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v3
