@@ -34,4 +34,4 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: ./outputs/servers_@_lab.png
+          files: ./outputs/*
