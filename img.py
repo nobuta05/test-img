@@ -1,14 +1,18 @@
 from diagrams import Cluster, Diagram
 from diagrams.onprem.compute import Server
 
-with Diagram("LDAP @ Lab", show=False, filename="./outputs/ldap_@_lab"):
+with Diagram("LDAP @ Lab", show=False, filename="output/ldap_@_lab", outformat="pdf"):
     with Cluster("LDAP Clients"):
         ldap_clients = [Server("GPU serv"), Server("CPU serv")]
 
     ldap_clients >> Server("LDAP Serv, Workstation")
 
 with Diagram(
-    "Servers @ Lab", show=False, filename="./outputs/servers_@_lab", direction="TB"
+    "Servers @ Lab",
+    show=False,
+    filename="output/servers_@_lab",
+    direction="TB",
+    outformat="pdf",
 ):
     with Cluster("Lab"):
         clients = [
